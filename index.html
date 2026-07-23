@@ -150,7 +150,8 @@
   .wa-menu.open { opacity: 1; transform: none; pointer-events: auto; }
   .wa-menu a, .wa-menu button { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 10px; text-decoration: none; transition: background .18s; background: none; border: 0; width: 100%; text-align: left; cursor: pointer; font-family: inherit; color: inherit; }
   .wa-menu a:hover, .wa-menu button:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
-  .wa-flag { font-size: 1.3rem; line-height: 1; }
+  .wa-flag { width: 27px; height: 18px; border-radius: 3px; overflow: hidden; flex: none; border: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+  .wa-flag svg { width: 100%; height: 100%; display: block; }
   .wa-meta { display: flex; flex-direction: column; gap: 2px; }
   .wa-meta b { font-size: .88rem; font-weight: 600; color: var(--ink); }
   .wa-meta span { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
@@ -617,8 +618,8 @@
             <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="wa-menu" id="waMenu" role="menu" aria-label="WhatsApp numbers">
-            <a role="menuitem" href="https://wa.me/9647838065638" target="_blank" rel="noopener"><span class="wa-flag">🇮🇶</span><span class="wa-meta"><b>Iraq</b><span>+964 783 806 5638</span></span></a>
-            <a role="menuitem" href="https://wa.me/963942073358" target="_blank" rel="noopener"><span class="wa-flag">🇸🇾</span><span class="wa-meta"><b>Syria</b><span>+963 942 073 358</span></span></a>
+            <a role="menuitem" href="https://wa.me/9647838065638" target="_blank" rel="noopener"><span class="wa-flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#CE1126"/><rect y="13.33" width="30" height="6.67" fill="#000"/><text x="15" y="12.3" font-size="5.2" fill="#007A3D" text-anchor="middle" font-family="serif">الله أكبر</text></svg></span><span class="wa-meta"><b>Iraq</b><span>+964 783 806 5638</span></span></a>
+            <a role="menuitem" href="https://wa.me/963942073358" target="_blank" rel="noopener"><span class="wa-flag"><svg viewBox="0 0 30 20" aria-hidden="true"><rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#007A3D"/><rect y="13.33" width="30" height="6.67" fill="#000"/><g fill="#CE1126"><polygon points="0,-1 0.588,0.809 -0.951,-0.309 0.951,-0.309 -0.588,0.809" transform="translate(7.5,10) scale(1.9)"/><polygon points="0,-1 0.588,0.809 -0.951,-0.309 0.951,-0.309 -0.588,0.809" transform="translate(15,10) scale(1.9)"/><polygon points="0,-1 0.588,0.809 -0.951,-0.309 0.951,-0.309 -0.588,0.809" transform="translate(22.5,10) scale(1.9)"/></g></svg></span><span class="wa-meta"><b>Syria</b><span>+963 942 073 358</span></span></a>
           </div>
         </div>
       </div>
