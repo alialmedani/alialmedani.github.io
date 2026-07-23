@@ -269,10 +269,41 @@
   .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 20px; }
   .tag { font-family: var(--font-mono); font-size: .7rem; padding: 4px 9px; border-radius: 7px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
   .card.minor .tag { background: var(--surface); }
-  .shots { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; margin: 0 0 16px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
-  .shots a { flex: none; }
-  .shots img { height: 215px; width: auto; border-radius: 10px; display: block; cursor: zoom-in; transition: transform .25s cubic-bezier(.2,.7,.2,1); }
-  .shots img:hover { transform: translateY(-4px) scale(1.03); }
+  .shots { display: flex; gap: 14px; overflow-x: auto; padding: 6px 2px 14px; margin: 0 0 16px; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+  .shots::-webkit-scrollbar { display: none; }
+  .shots a { flex: none; scroll-snap-align: start; }
+  .shots img { height: 220px; width: auto; display: block; cursor: zoom-in; border-radius: 12px; filter: drop-shadow(0 8px 18px rgba(0,0,0,.35)); transition: transform .3s cubic-bezier(.2,.7,.2,1), filter .3s; }
+  .shots img:hover { transform: translateY(-6px) scale(1.04); filter: drop-shadow(0 16px 32px var(--glow)); }
+  .shots-wrap { position: relative; }
+  .shots { cursor: grab; }
+  .shots.dragging { cursor: grabbing; scroll-snap-type: none; }
+  .shots.dragging img { pointer-events: none; }
+  .sh-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; font-size: 1.15rem; line-height: 1;
+    background: color-mix(in srgb, var(--surface) 88%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); color: var(--ink); box-shadow: var(--shadow-sm); transition: border-color .2s, color .2s, opacity .25s; }
+  .sh-prev { left: -8px; }
+  .sh-next { right: -8px; }
+  .sh-nav:hover { border-color: var(--accent); color: var(--accent-ink); }
+  .sh-nav.off { opacity: 0; pointer-events: none; }
+  @media (max-width: 560px) { .sh-nav { display: none; } }
+  .lb { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; background: rgba(4,7,11,.88);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transition: opacity .3s; }
+  .lb.open { opacity: 1; pointer-events: auto; }
+  .lb-img { max-height: 86vh; max-width: 86vw; border-radius: 14px; transform: scale(.95); transition: transform .3s cubic-bezier(.2,.7,.2,1); filter: drop-shadow(0 24px 70px rgba(0,0,0,.6)); }
+  .lb.open .lb-img { transform: none; }
+  .lb-close, .lb-prev, .lb-next { position: absolute; z-index: 2; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+    background: color-mix(in srgb, var(--surface) 72%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); color: var(--ink); font-size: 1.25rem; line-height: 1; transition: border-color .2s, color .2s, transform .2s; }
+  .lb-close:hover, .lb-prev:hover, .lb-next:hover { border-color: var(--accent); color: var(--accent-ink); transform: scale(1.08); }
+  .lb-prev:hover, .lb-next:hover { transform: translateY(-50%) scale(1.08); }
+  .lb-close { top: 18px; right: 18px; }
+  .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+  .lb-count { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: .8rem; color: var(--muted);
+    background: color-mix(in srgb, var(--surface) 72%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); padding: 6px 16px; border-radius: 999px; }
+  @media (max-width: 560px) { .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-img { max-width: 94vw; } }
   .p-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
   .store { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .76rem; font-weight: 600; text-decoration: none; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--line); color: var(--ink); transition: background .2s, border-color .2s, color .2s; }
   .store:hover { background: var(--grad); border-color: transparent; color: var(--on-accent); }
@@ -352,6 +383,7 @@
     .hrule { width: 62px !important; transition: none !important; }
     .wa-menu, .wa-trigger .chev { transition: none !important; }
     .to-top { transition: none !important; }
+    .lb, .lb-img, .shots img { transition: none !important; }
   }
 </style>
 </head>
@@ -543,6 +575,17 @@
             <li>Item, unit &amp; organization lookups feeding order entry</li>
             <li>Email + Google sign-in, Firebase push; Arabic-first RTL</li>
           </ul>
+          <div class="shots">
+            <a href="screens/warehouse-01.png" target="_blank" rel="noopener"><img src="screens/warehouse-01.png" alt="Warehouse app — dashboard with delivery counters" loading="lazy"></a>
+            <a href="screens/warehouse-02.png" target="_blank" rel="noopener"><img src="screens/warehouse-02.png" alt="Warehouse app — stock-in requests list" loading="lazy"></a>
+            <a href="screens/warehouse-03.png" target="_blank" rel="noopener"><img src="screens/warehouse-03.png" alt="Warehouse app — new request, order details and timeline" loading="lazy"></a>
+            <a href="screens/warehouse-04.png" target="_blank" rel="noopener"><img src="screens/warehouse-04.png" alt="Warehouse app — new request, inventory items list" loading="lazy"></a>
+            <a href="screens/warehouse-05.png" target="_blank" rel="noopener"><img src="screens/warehouse-05.png" alt="Warehouse app — item entry with batches, manufacture and expiry" loading="lazy"></a>
+            <a href="screens/warehouse-06.png" target="_blank" rel="noopener"><img src="screens/warehouse-06.png" alt="Warehouse app — review and confirm request" loading="lazy"></a>
+            <a href="screens/warehouse-07.png" target="_blank" rel="noopener"><img src="screens/warehouse-07.png" alt="Warehouse app — approved stock-in request details" loading="lazy"></a>
+            <a href="screens/warehouse-08.png" target="_blank" rel="noopener"><img src="screens/warehouse-08.png" alt="Warehouse app — live inventory balance with search" loading="lazy"></a>
+            <a href="screens/warehouse-09.png" target="_blank" rel="noopener"><img src="screens/warehouse-09.png" alt="Warehouse app — item balance details with barcode and tracking" loading="lazy"></a>
+          </div>
           <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">Clean Arch</span><span class="tag">Firebase</span><span class="tag">DI</span></div>
         </article>
         <article class="card minor">
@@ -669,6 +712,14 @@
 <button type="button" class="to-top" id="toTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
 </button>
+
+<div class="lb" id="lightbox" aria-hidden="true">
+  <button type="button" class="lb-close" aria-label="Close">✕</button>
+  <button type="button" class="lb-prev" aria-label="Previous">‹</button>
+  <img class="lb-img" src="" alt="">
+  <button type="button" class="lb-next" aria-label="Next">›</button>
+  <div class="lb-count"></div>
+</div>
 
 <script>
   (function () {
@@ -797,6 +848,87 @@
         ents.forEach(function (en) { if (en.isIntersecting) navlinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); }); });
       }, { rootMargin: '-45% 0px -50% 0px' });
       secs.forEach(function (s) { no.observe(s); });
+    }
+    // screenshot strip controls: arrows + wheel + drag
+    document.querySelectorAll('.shots').forEach(function (strip) {
+      var wrap = document.createElement('div');
+      wrap.className = 'shots-wrap';
+      strip.parentNode.insertBefore(wrap, strip);
+      wrap.appendChild(strip);
+      var prev = document.createElement('button');
+      prev.type = 'button'; prev.className = 'sh-nav sh-prev'; prev.setAttribute('aria-label', 'Scroll left'); prev.textContent = '‹';
+      var next = document.createElement('button');
+      next.type = 'button'; next.className = 'sh-nav sh-next'; next.setAttribute('aria-label', 'Scroll right'); next.textContent = '›';
+      wrap.appendChild(prev); wrap.appendChild(next);
+      var step = function () { return Math.max(180, strip.clientWidth * 0.7); };
+      prev.addEventListener('click', function () { strip.scrollBy({ left: -step(), behavior: reduce ? 'auto' : 'smooth' }); });
+      next.addEventListener('click', function () { strip.scrollBy({ left: step(), behavior: reduce ? 'auto' : 'smooth' }); });
+      var update = function () {
+        prev.classList.toggle('off', strip.scrollLeft <= 4);
+        next.classList.toggle('off', strip.scrollLeft >= strip.scrollWidth - strip.clientWidth - 4);
+      };
+      strip.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+      strip.addEventListener('wheel', function (e) {
+        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); strip.scrollLeft += e.deltaY; }
+      }, { passive: false });
+      var dragging = false, dragMoved = false, startX = 0, startScroll = 0;
+      strip.addEventListener('pointerdown', function (e) {
+        if (e.pointerType !== 'mouse') return;
+        dragging = true; dragMoved = false; startX = e.clientX; startScroll = strip.scrollLeft;
+      });
+      window.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var dx = e.clientX - startX;
+        if (Math.abs(dx) > 6 && !dragMoved) { dragMoved = true; strip.classList.add('dragging'); }
+        if (dragMoved) strip.scrollLeft = startScroll - dx;
+      });
+      window.addEventListener('pointerup', function () { dragging = false; strip.classList.remove('dragging'); });
+      strip.addEventListener('click', function (e) {
+        if (dragMoved) { e.preventDefault(); e.stopPropagation(); dragMoved = false; }
+      }, true);
+    });
+
+    // screenshot lightbox
+    var lb = document.getElementById('lightbox');
+    if (lb) {
+      var lbImg = lb.querySelector('.lb-img'), lbCount = lb.querySelector('.lb-count');
+      var gallery = [];
+      var gIdx = 0;
+      var showShot = function (i) {
+        gIdx = (i + gallery.length) % gallery.length;
+        var thumb = gallery[gIdx].querySelector('img');
+        lbImg.src = gallery[gIdx].getAttribute('href');
+        lbImg.alt = thumb ? thumb.alt : '';
+        lbCount.textContent = (gIdx + 1) + ' / ' + gallery.length;
+      };
+      var openLb = function (i) { showShot(i); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; };
+      var closeLb = function () { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+      document.querySelectorAll('.shots').forEach(function (strip) {
+        var links = Array.prototype.slice.call(strip.querySelectorAll('a'));
+        links.forEach(function (a, i) {
+          a.addEventListener('click', function (e) { e.preventDefault(); gallery = links; openLb(i); });
+        });
+      });
+      lb.querySelector('.lb-close').addEventListener('click', closeLb);
+      lb.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); showShot(gIdx - 1); });
+      lb.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); showShot(gIdx + 1); });
+      lb.addEventListener('click', function (e) { if (e.target === lb) closeLb(); });
+      document.addEventListener('keydown', function (e) {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') showShot(gIdx - 1);
+        if (e.key === 'ArrowRight') showShot(gIdx + 1);
+      });
+      var touchX = null;
+      lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+      lb.addEventListener('touchend', function (e) {
+        if (touchX === null) return;
+        var dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) showShot(gIdx + (dx < 0 ? 1 : -1));
+        touchX = null;
+      }, { passive: true });
     }
   })();
 </script>
