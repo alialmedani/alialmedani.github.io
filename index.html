@@ -102,8 +102,8 @@
   .hrule { height: 3px; width: 0; border-radius: 3px; background: var(--grad); margin-top: 18px; transition: width .85s cubic-bezier(.2,.7,.2,1) .15s; }
   .reveal.in .hrule { width: 62px; }
 
-  .hero { position: relative; padding: clamp(70px, 13vw, 150px) 0 clamp(60px, 9vw, 104px); overflow: hidden; isolation: isolate; }
-  .aurora { position: absolute; inset: -20% -10% 0; z-index: -2; pointer-events: none; }
+  .hero { position: relative; z-index: 5; padding: clamp(70px, 13vw, 150px) 0 clamp(60px, 9vw, 104px); isolation: isolate; }
+  .aurora { position: absolute; inset: -20% -10% 0; z-index: -2; pointer-events: none; overflow: hidden; }
   .blob { position: absolute; border-radius: 50%; filter: blur(75px); opacity: .5; will-change: transform; }
   .b1 { width: 480px; height: 480px; top: -120px; left: -60px; background: radial-gradient(circle, var(--accent), transparent 65%); animation: drift1 26s ease-in-out infinite; }
   .b2 { width: 420px; height: 420px; top: -40px; right: -80px; background: radial-gradient(circle, var(--accent-2), transparent 65%); opacity: .38; animation: drift2 32s ease-in-out infinite; }
@@ -158,6 +158,12 @@
   @media (max-width: 560px) {
     .wa-menu { left: 50%; transform: translate(-50%, 8px) scale(.97); max-width: calc(100vw - 24px); }
     .wa-menu.open { transform: translate(-50%, 0); }
+  }
+  .wa-menu.down { bottom: auto; top: calc(100% + 10px); transform-origin: top left; transform: translateY(-8px) scale(.97); }
+  .wa-menu.down.open { transform: none; }
+  @media (max-width: 560px) {
+    .wa-menu.down { transform: translate(-50%, -8px) scale(.97); }
+    .wa-menu.down.open { transform: translate(-50%, 0); }
   }
   .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 48; width: 46px; height: 46px; border-radius: 50%;
     border: 1px solid var(--line); cursor: pointer; display: grid; place-items: center;
@@ -371,7 +377,13 @@
       <p class="lede rise d4">I build and maintain <span class="hl">production Flutter apps</span> for Android &amp; iOS — two are live on the App&nbsp;Store and Google&nbsp;Play right now.</p>
       <div class="hero-cta rise d5">
         <a class="btn btn-primary mag" href="#work">See my work<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-cv mag" href="https://drive.google.com/uc?export=download&amp;id=1s_SZy4iDPELl7iDEFHgO4lIITRYxONlv" target="_blank" rel="noopener">📄 Download CV</a>
+        <div class="wa-wrap">
+          <button type="button" class="btn btn-cv wa-trigger" id="cvTrigger" aria-haspopup="true" aria-expanded="false">📄 My CV<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="wa-menu down" id="cvMenu" role="menu" aria-label="CV options">
+            <a role="menuitem" href="https://drive.google.com/uc?export=download&amp;id=1s_SZy4iDPELl7iDEFHgO4lIITRYxONlv" target="_blank" rel="noopener"><span class="wa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span><span class="wa-meta"><b>Download CV</b><span>PDF file</span></span></a>
+            <a role="menuitem" href="https://drive.google.com/file/d/1s_SZy4iDPELl7iDEFHgO4lIITRYxONlv/view" target="_blank" rel="noopener"><span class="wa-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg></span><span class="wa-meta"><b>Preview CV</b><span>Open in browser</span></span></a>
+          </div>
+        </div>
         <a class="btn btn-ghost mag" href="#contact">Get in touch</a>
       </div>
     </div>
@@ -392,7 +404,7 @@
       <div class="sec-head"><span class="eyebrow">About</span><h2>Production apps, not prototypes.</h2><div class="hrule"></div></div>
       <div class="about-grid">
         <p>I'm a Flutter developer focused on shipping real apps that hold up once actual users are on them. My core stack is <strong>Flutter/Dart with Bloc/Cubit</strong>, a clean, layered architecture (use-cases and repositories), <strong>Dio</strong> for REST APIs, and full <strong>Arabic/English (RTL)</strong> localization.</p>
-        <p>My work spans HR/attendance and logistics/delivery. I'm most comfortable with the harder features — <strong>real-time tracking and maps</strong>, <strong>biometric face &amp; liveness verification</strong>, and offline-first flows that stay correct when the network is unreliable. Since June 2026 I've also been working beyond the frontend — backend work with .NET (ASP.NET Core / ABP), from production bug fixes to building services.</p>
+        <p>My work spans HR/attendance and logistics/delivery. I'm most comfortable with the harder features — <strong>real-time tracking and maps</strong>, <strong>biometric face &amp; liveness verification</strong>, and offline-first flows that stay correct when the network is unreliable. Since June 2026 I've also been working beyond the mobile side — backend development with .NET (ASP.NET Core / ABP), from production bug fixes to building services.</p>
         <p>What I care about most is the unglamorous half of shipping: solid validation, error handling, and the production debugging that keeps releases stable.</p>
       </div>
     </div>
@@ -453,7 +465,7 @@
       <div class="xp reveal">
         <div class="xp-item">
           <div class="xp-date">Jun 2026 — Present <span class="status live"><span class="dot"></span>Current</span></div>
-          <h3 class="xp-role">Backend Developer (.NET)</h3>
+          <h3 class="xp-role">Full-Stack Mobile Developer</h3>
           <p class="xp-co"><b>Advanced Achievement Company for Information Technology Ltd. (Enjaz)</b> · Baghdad, Iraq</p>
           <ul class="highlights">
             <li>In addition to my mobile role — backend development with C#/ASP.NET Core (ABP Framework), started June 2026</li>
@@ -680,6 +692,7 @@
       return close;
     }
     setupDropdown('waTrigger', 'waMenu');
+    setupDropdown('cvTrigger', 'cvMenu');
     var closeEm = setupDropdown('emTrigger', 'emMenu');
 
     // on phones, open the mail app (Gmail) instead of Gmail web
