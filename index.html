@@ -154,6 +154,17 @@
   .wa-meta { display: flex; flex-direction: column; gap: 2px; }
   .wa-meta b { font-size: .88rem; font-weight: 600; color: var(--ink); }
   .wa-meta span { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
+  .to-top { position: fixed; right: 22px; bottom: 22px; z-index: 48; width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid var(--line); cursor: pointer; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--surface) 80%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(150%); backdrop-filter: blur(14px) saturate(150%);
+    color: var(--accent-ink); box-shadow: var(--shadow);
+    opacity: 0; transform: translateY(14px); pointer-events: none;
+    transition: opacity .3s cubic-bezier(.2,.7,.2,1), transform .3s cubic-bezier(.2,.7,.2,1), border-color .2s, box-shadow .2s; }
+  .to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+  .to-top:hover { border-color: var(--accent); box-shadow: 0 8px 24px var(--glow); }
+  .to-top svg { width: 20px; height: 20px; }
+  @media (max-width: 560px) { .to-top { right: 16px; bottom: 16px; width: 42px; height: 42px; } }
   .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { font-family: var(--font-mono); font-size: .82rem; font-weight: 600; text-decoration: none; padding: 13px 22px; border-radius: 999px; display: inline-flex; align-items: center; gap: 9px; transition: box-shadow .2s, background .2s, border-color .2s, color .2s; }
   .btn svg { width: 16px; height: 16px; }
@@ -270,6 +281,15 @@
   @keyframes pop { from { opacity: 0; transform: translateY(9px) scale(.96); } to { opacity: 1; transform: none; } }
   .learning { margin-top: 22px; font-family: var(--font-mono); font-size: .82rem; color: var(--muted); display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .learning span { background: var(--surface-2); border: 1px dashed color-mix(in srgb, var(--accent) 45%, var(--line)); padding: 4px 11px; border-radius: 999px; color: var(--ink); }
+  .xp { max-width: 800px; }
+  .xp-item { position: relative; padding: 0 0 40px 34px; border-left: 1px solid var(--line); margin-left: 7px; }
+  .xp-item:last-child { padding-bottom: 4px; }
+  .xp-item::before { content: ""; position: absolute; left: -7px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: var(--grad); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 16%, transparent); }
+  .xp-date { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .xp-role { font-size: 1.18rem; font-weight: 700; letter-spacing: -.015em; margin: 0; }
+  .xp-co { color: var(--muted); font-size: .95rem; margin: 3px 0 16px; }
+  .xp-co b { color: var(--ink); font-weight: 600; }
+  .xp .highlights { margin-bottom: 0; }
 
   .meta-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; }
   @media (max-width: 680px) { .meta-grid { grid-template-columns: 1fr; gap: 30px; } }
@@ -314,6 +334,7 @@
     .hero:hover .spot { opacity: 0; }
     .hrule { width: 62px !important; transition: none !important; }
     .wa-menu, .wa-trigger .chev { transition: none !important; }
+    .to-top { transition: none !important; }
   }
 </style>
 </head>
@@ -326,7 +347,7 @@
   <div class="nav-in">
     <a class="brand" href="#top"><span class="mono-mark">AM</span>Ali Medani</a>
     <div class="nav-right">
-      <div class="nav-links"><a href="#services">Services</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a></div>
+      <div class="nav-links"><a href="#services">Services</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#skills">Skills</a><a href="#about">About</a></div>
       <a class="nav-cta mag" href="#contact">Get in touch</a>
     </div>
   </div>
@@ -353,9 +374,9 @@
   <div class="wrap" style="padding-top: clamp(20px,4vw,40px); padding-bottom: clamp(20px,4vw,44px);">
     <div class="stats reveal" id="stats">
       <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">Live in production</div></div>
-      <div class="stat"><div class="num" data-count="6">0</div><div class="lbl">Projects built</div></div>
+      <div class="stat"><div class="num" data-count="7">0</div><div class="lbl">Projects built</div></div>
       <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="lbl">Years with Flutter</div></div>
-      <div class="stat"><div class="num" data-count="2">0</div><div class="lbl">App stores shipped</div></div>
+      <div class="stat"><div class="num" data-count="4">0</div><div class="lbl">Business domains</div></div>
     </div>
   </div>
 
@@ -418,6 +439,35 @@
       <span>Firebase / FCM</span><span>SignalR</span><span>OAuth 2.0</span><span>.NET / ABP</span><span>Barcode / QR</span><span>Push notifications</span><span>Skeleton loaders</span><span>Glassmorphism</span><span>shadcn_ui</span><span>Lottie</span><span>easy_localization</span><span>get_it</span>
     </div>
   </div>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="eyebrow">Experience</span><h2>Where I've worked.</h2><div class="hrule"></div></div>
+      <div class="xp reveal">
+        <div class="xp-item">
+          <div class="xp-date">Oct 2025 — Present <span class="status live"><span class="dot"></span>Current</span></div>
+          <h3 class="xp-role">Mobile Application Developer</h3>
+          <p class="xp-co"><b>Advanced Achievement Co. for Information Technology (Enjaz)</b> · Baghdad, Iraq</p>
+          <ul class="highlights">
+            <li>Develop and maintain Flutter apps for a multi-module enterprise ERP suite (Inventory, Finance, HR, Point of Sale) with full Arabic/English RTL support</li>
+            <li>Built the biometric attendance flow — on-device face detection and liveness checks, plus GPS capture with mock-location rejection (face matching server-side)</li>
+            <li>Took over Noon Express, a live last-mile delivery app, after its initial release — new features, refactoring, production fixes, and store releases</li>
+            <li>Integrate REST APIs with Dio: interceptors, JWT token refresh, and standardized error mapping shared app-wide</li>
+            <li>Partner with backend and QA to ship stable releases, analyzing logs and delivering production fixes</li>
+          </ul>
+        </div>
+        <div class="xp-item">
+          <div class="xp-date">Jan 2023 — Nov 2023</div>
+          <h3 class="xp-role">Full-stack Mobile Developer</h3>
+          <p class="xp-co"><b>Schindler elevator project</b> · Flutter &amp; Firebase</p>
+          <ul class="highlights">
+            <li>Built an elevator-management app plus a companion app for field employees to log inspections and submit reports</li>
+            <li>Designed and managed the Firebase database</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section id="work">
     <div class="wrap">
@@ -483,16 +533,26 @@
           <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">.NET / ABP</span><span class="tag">Multi-tenant</span><span class="tag">Maps</span></div>
         </article>
         <article class="card minor">
-          <p class="p-kind">Full-stack mobile · 2023</p>
-          <div class="p-top"><h3 class="p-title">Schindler</h3><span class="status past"><span class="dot"></span>Past</span></div>
-          <p class="p-desc">Elevator-management app plus a companion app for field employees to see out-of-service units, log inspections, and submit reports. Designed and managed the Firebase database.</p>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">Firebase</span></div>
+          <p class="p-kind">Retail · Store management</p>
+          <div class="p-top"><h3 class="p-title">Store Management App</h3><span class="status dev"><span class="dot"></span>In development</span></div>
+          <p class="p-desc">A cross-platform app for store owners to run their business end to end — products with size/colour variants, categories, inventory tracking, and the full order lifecycle from creation to fulfillment, over a REST API with offline-friendly local caching.</p>
+          <ul class="highlights">
+            <li>OTP phone authentication and Firebase push notifications</li>
+            <li>Feature-based clean architecture: Cubit, repositories / use-cases, get_it DI</li>
+            <li>Localized in Arabic, English &amp; Bengali with full RTL support</li>
+          </ul>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">Dio</span><span class="tag">Hive</span><span class="tag">Firebase</span></div>
         </article>
         <article class="card minor">
-          <p class="p-kind">Personal / learning project</p>
-          <div class="p-top"><h3 class="p-title">Zaya Store</h3><span class="status past"><span class="dot"></span>Personal</span></div>
-          <p class="p-desc">A product-display shopping app that fetches a catalog from an external API, with a favorites list — built to explore Flutter with GetX state management.</p>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">GetX</span><span class="tag">REST</span></div>
+          <p class="p-kind">Backend · Retail API</p>
+          <div class="p-top"><h3 class="p-title">Store Management API</h3><span class="status dev"><span class="dot"></span>In development</span></div>
+          <p class="p-desc">The companion backend, built with C# and ASP.NET Core (.NET 10) on the ABP Framework with a domain-driven, layered architecture. Inventory records every stock movement as an auditable history, and orders run a create–confirm–cancel lifecycle with automatic stock deduction and multi-method payments.</p>
+          <ul class="highlights">
+            <li>OpenIddict / JWT auth — one API serving the web admin and mobile app</li>
+            <li>Permission-based access control and configurable business rules</li>
+            <li>EF Core data layer with xUnit tests across domain &amp; application layers</li>
+          </ul>
+          <div class="tags"><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">ABP</span><span class="tag">EF Core</span><span class="tag">xUnit</span></div>
         </article>
       </div>
     </div>
@@ -502,10 +562,10 @@
     <div class="wrap">
       <div class="sec-head reveal"><span class="eyebrow">Skills</span><h2>What I work with.</h2><div class="hrule"></div></div>
       <div class="skills reveal">
-        <div class="skill-group"><h3>Languages</h3><div class="skill-list"><span>Dart</span><span>C#</span><span>JavaScript</span></div></div>
+        <div class="skill-group"><h3>Languages</h3><div class="skill-list"><span>Dart</span><span>C#</span></div></div>
         <div class="skill-group"><h3>Flutter &amp; State</h3><div class="skill-list"><span>Flutter</span><span>Bloc / Cubit</span><span>GetX</span><span>Clean architecture</span><span>get_it (DI)</span><span>dartz (functional)</span></div></div>
         <div class="skill-group"><h3>API &amp; Networking</h3><div class="skill-list"><span>REST</span><span>Dio</span><span>Interceptors</span><span>JWT &amp; token refresh</span><span>Error mapping</span><span>JSON serialization</span><span>Pagination</span></div></div>
-        <div class="skill-group"><h3>Backend &amp; Integration</h3><div class="skill-list"><span>SignalR (real-time)</span><span>.NET / ABP</span><span>OAuth 2.0</span><span>Multi-tenant APIs</span><span>Firebase (FCM)</span><span>Firestore</span></div></div>
+        <div class="skill-group"><h3>Backend &amp; Integration</h3><div class="skill-list"><span>SignalR (real-time)</span><span>.NET / ABP</span><span>ASP.NET Core</span><span>EF Core</span><span>OpenIddict</span><span>xUnit</span><span>OAuth 2.0</span><span>Multi-tenant APIs</span><span>Firebase (FCM)</span><span>Firestore</span></div></div>
         <div class="skill-group"><h3>Device &amp; Platform</h3><div class="skill-list"><span>ML Kit face detection</span><span>Liveness detection</span><span>Geolocation &amp; maps</span><span>Camera</span><span>Barcode / QR</span><span>Push &amp; local notifications</span><span>Permissions</span><span>Platform channels</span></div></div>
         <div class="skill-group"><h3>Data &amp; Offline</h3><div class="skill-list"><span>Hive</span><span>Offline-first</span><span>Caching</span><span>Timezone handling</span></div></div>
         <div class="skill-group"><h3>UI / UX</h3><div class="skill-list"><span>Design systems</span><span>Reusable components</span><span>Responsive UI</span><span>RTL (Arabic/English)</span><span>easy_localization</span><span>SVG &amp; Lottie</span><span>Skeleton / shimmer</span><span>Glassmorphism</span><span>shadcn_ui</span></div></div>
@@ -578,13 +638,25 @@
   </footer>
 </main>
 
+<button type="button" class="to-top" id="toTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+</button>
+
 <script>
   (function () {
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     var bar = document.getElementById('progress');
-    function onScroll() { var h = document.documentElement; bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%'; }
+    var toTop = document.getElementById('toTop');
+    function onScroll() {
+      var h = document.documentElement;
+      bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+      if (toTop) toTop.classList.toggle('show', h.scrollTop > 600);
+    }
     document.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    if (toTop) toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
 
     // WhatsApp dropdown
     var waTrigger = document.getElementById('waTrigger'), waMenu = document.getElementById('waMenu');
@@ -655,7 +727,7 @@
     } else if (statsWrap) { statsWrap.querySelectorAll('[data-count]').forEach(countUp); }
 
     var navlinks = document.querySelectorAll('.nav-links a');
-    var secs = ['services', 'work', 'skills', 'about'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    var secs = ['services', 'work', 'experience', 'skills', 'about'].map(function (id) { return document.getElementById(id); }).filter(Boolean);
     if ('IntersectionObserver' in window && secs.length) {
       var no = new IntersectionObserver(function (ents) {
         ents.forEach(function (en) { if (en.isIntersecting) navlinks.forEach(function (l) { l.classList.toggle('active', l.getAttribute('href') === '#' + en.target.id); }); });
