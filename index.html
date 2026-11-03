@@ -336,6 +336,8 @@
   .lb-num { color: var(--accent-ink); flex: none; }
   @media (max-width: 560px) { .lb-prev { left: 8px; } .lb-next { right: 8px; } .lb-img { max-width: 94vw; } }
   .p-links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 10px; }
+  .card.minor .tags { margin-top: auto; }
+  .card.minor .tags + .p-links { margin-top: 0; }
   .store { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: .76rem; font-weight: 600; text-decoration: none; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--line); color: var(--ink); transition: background .2s, border-color .2s, color .2s; }
   .store:hover { background: var(--grad); border-color: transparent; color: var(--on-accent); }
   .store svg { width: 14px; height: 14px; }
@@ -461,7 +463,7 @@
 
   <div class="wrap" style="padding-top: clamp(20px,4vw,40px); padding-bottom: clamp(20px,4vw,44px);">
     <div class="stats reveal" id="stats">
-      <div class="stat"><div class="num" data-count="9">0</div><div class="lbl">ERP modules shipped</div></div>
+      <div class="stat"><div class="num" data-count="10">0</div><div class="lbl">ERP modules shipped</div></div>
       <div class="stat"><div class="num" data-count="7">0</div><div class="lbl">Projects built</div></div>
       <div class="stat"><div class="num" data-count="3" data-suffix="+">0</div><div class="lbl">Years with Flutter</div></div>
       <div class="stat"><div class="num" data-count="4">0</div><div class="lbl">Business domains</div></div>
@@ -474,7 +476,7 @@
       <div class="about-cols">
         <div class="about-grid">
           <p>I'm a Flutter developer focused on shipping real apps that hold up once actual users are on them. My core stack is <strong>Flutter/Dart with Bloc/Cubit</strong>, a clean, layered architecture (use-cases and repositories), <strong>Dio</strong> for REST APIs, and full <strong>Arabic/English (RTL)</strong> localization.</p>
-          <p>My work spans HR/attendance and logistics/delivery. I'm most comfortable with the harder features — <strong>real-time tracking and maps</strong>, <strong>biometric face &amp; liveness verification</strong>, and offline-first flows that stay correct when the network is unreliable. Since June 2026 I've also been working beyond the mobile side — backend development with .NET (ASP.NET Core / ABP), from production bug fixes to building services.</p>
+          <p>My work spans HR/attendance and logistics/delivery. I'm most comfortable with the harder features — <strong>biometric face &amp; liveness verification</strong>, barcode/QR scanning, and real-time notifications. Since June 2026 I've also been working beyond the mobile side — backend development with .NET (ASP.NET Core / ABP), building API endpoints for a freight platform.</p>
           <p>What I care about most is the unglamorous half of shipping: solid validation, error handling, and the production debugging that keeps releases stable.</p>
         </div>
         <aside class="about-side">
@@ -511,7 +513,7 @@
         <div class="service">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div>
           <h3>State Management</h3>
-          <p>Predictable, testable state with Bloc / Cubit (and GetX) — no tangled widgets or hidden side effects.</p>
+          <p>Predictable, testable state with Bloc / Cubit — no tangled widgets or hidden side effects.</p>
         </div>
         <div class="service">
           <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
@@ -529,8 +531,8 @@
 
   <div class="marquee" aria-hidden="true">
     <div class="mq-track">
-      <span>Flutter</span><span>Dart</span><span>Bloc / Cubit</span><span>Clean Architecture</span><span>Dio</span><span>REST APIs</span><span>ML Kit</span><span>Geolocation</span><span>Hive</span><span>RTL / Arabic</span><span>Platform Channels</span><span>Offline-first</span>
-      <span>Flutter</span><span>Dart</span><span>Bloc / Cubit</span><span>Clean Architecture</span><span>Dio</span><span>REST APIs</span><span>ML Kit</span><span>Geolocation</span><span>Hive</span><span>RTL / Arabic</span><span>Platform Channels</span><span>Offline-first</span>
+      <span>Flutter</span><span>Dart</span><span>Bloc / Cubit</span><span>Clean Architecture</span><span>Dio</span><span>REST APIs</span><span>ML Kit</span><span>Geolocation</span><span>Hive</span><span>RTL / Arabic</span><span>Platform Channels</span>
+      <span>Flutter</span><span>Dart</span><span>Bloc / Cubit</span><span>Clean Architecture</span><span>Dio</span><span>REST APIs</span><span>ML Kit</span><span>Geolocation</span><span>Hive</span><span>RTL / Arabic</span><span>Platform Channels</span>
     </div>
     <div class="mq-track rev">
       <span>Firebase / FCM</span><span>SignalR</span><span>OAuth 2.0</span><span>.NET / ABP</span><span>Barcode / QR</span><span>Push notifications</span><span>Skeleton loaders</span><span>Glassmorphism</span><span>shadcn_ui</span><span>Lottie</span><span>easy_localization</span><span>get_it</span>
@@ -548,7 +550,7 @@
           <p class="xp-co"><b>Advanced Achievement Company for Information Technology Ltd. (Enjaz)</b> · Baghdad, Iraq</p>
           <ul class="highlights">
             <li>In addition to my mobile role — backend development with C#/ASP.NET Core (ABP Framework), started June 2026</li>
-            <li>Took over the Noon Express backend, debugging and fixing production issues</li>
+            <li>Contributed to the Noon Express backend (.NET / ABP) — built the freight gateway endpoints (merchant registration, shipment booking, lookups)</li>
           </ul>
         </div>
         <div class="xp-item">
@@ -558,7 +560,7 @@
           <ul class="highlights">
             <li>Develop and maintain Flutter apps for a multi-module enterprise ERP suite (Inventory, Finance, HR, Point of Sale) with full Arabic/English RTL support</li>
             <li>Built the biometric attendance flow — on-device face detection and liveness checks, plus GPS capture with mock-location rejection (face matching server-side)</li>
-            <li>Took over Noon Express, a live last-mile delivery app, after its initial release — new features, refactoring, production fixes, and store releases</li>
+            <li>Took over Noon Express, a live last-mile delivery app, after its initial release — new features, refactoring, and store releases</li>
             <li>Integrate REST APIs with Dio: interceptors, JWT token refresh, and standardized error mapping shared app-wide</li>
             <li>Partner with backend and QA to ship stable releases, analyzing logs and delivering production fixes</li>
           </ul>
@@ -573,16 +575,17 @@
 
       <div class="projects p-featured stagger reveal">
         <article class="card spot-card tilt">
-          <p class="p-kind">Enterprise ERP · 9 Modules</p>
+          <p class="p-kind">Enterprise ERP · 10 Modules</p>
           <div class="p-top"><h3 class="p-title">ENKI ERP</h3><span class="status live"><span class="dot"></span>Live</span></div>
-          <p class="p-desc">Cross-platform Flutter client for a modular enterprise ERP, built and shipped end-to-end across <b>9 modules</b> — Finance, HR/Attendance, Point of Sale, Inventory, Purchasing, Sales, Manufacturing, and Archive — serving Arabic- and English-speaking staff with full RTL support. The Attendance module includes on-device face detection and liveness detection (randomized head-turn / smile challenges) plus GPS capture with mock-location rejection — with face matching handled server-side — to prevent spoofed or off-site check-ins.</p>
+          <p class="p-desc">Cross-platform Flutter client for a modular enterprise ERP, built and shipped end-to-end across <b>10 modules</b> — HR/Attendance, Finance, Inventory, Sales, Purchasing, Manufacturing, Point of Sale, Archive (DMS), workflow-based Form Service, and Freight — with permission-based access, barcode/QR scanning, PDF invoice printing, and real-time notifications, serving Arabic-, English- and Kurdish-speaking staff with full RTL support. The Attendance module includes on-device face detection and liveness detection (randomized head-turn / smile challenges) plus GPS capture with mock-location rejection — with face matching handled server-side — to prevent spoofed or off-site check-ins.</p>
           <ul class="highlights">
-            <li>Built all 9 modules end-to-end on a shared Bloc/Cubit + clean architecture</li>
+            <li>Built 10 modules end-to-end on a shared Bloc/Cubit + clean architecture</li>
             <li>Attendance: on-device face detection + liveness (head-turn / smile challenges)</li>
             <li>GPS capture with mock-location rejection; face matching server-side</li>
+            <li>Barcode/QR scanning (inventory &amp; POS), PDF invoice/receipt printing, FCM + SignalR notifications</li>
             <li>Reusable component library and light/dark theming across every module</li>
           </ul>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">Bloc/Cubit</span><span class="tag">ML Kit</span><span class="tag">Geolocation</span><span class="tag">Dio</span><span class="tag">Clean Arch</span></div>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Bloc/Cubit</span><span class="tag">ML Kit</span><span class="tag">Geolocation</span><span class="tag">Dio</span><span class="tag">Clean Arch</span><span class="tag">SignalR</span><span class="tag">FCM</span></div>
           <div class="p-links">
             <a class="store mag" href="https://apps.apple.com/iq/app/enkierp/id6754872062" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.7c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .4-2 1-2.7.8-.8 1.9-1.4 2.8-1.4ZM19.9 17c-.5 1.2-.8 1.7-1.5 2.7-.9 1.4-2.3 3.1-3.9 3.1-1.5 0-1.8-1-3.8-1-1.9 0-2.3 1-3.7 1-1.6 0-2.8-1.5-3.8-2.9C1 18.2.9 13.4 3.2 11c.9-1.2 2.4-2 3.8-2 1.5 0 2.4 1 3.7 1 1.2 0 2-1 3.7-1 1.3 0 2.6.7 3.6 1.9-3.1 1.7-2.6 6.1.9 7.1Z"/></svg>App Store</a>
             <a class="store mag" href="https://play.google.com/store/apps/details?id=com.enjaz.enkierpplatform" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.6v-.2L3.7 2.2ZM16.3 15.9 13.4 13v-.2l2.9-2.9.1.1 3.5 2c1 .6 1 1.5 0 2.1ZM16 16.2l-3-3-9.3 9.3c.4.4 1 .4 1.7 0Zm-12.3-14 12.3 7-3 3Z"/></svg>Google Play</a>
@@ -592,15 +595,15 @@
         <article class="card spot-card tilt">
           <p class="p-kind">Logistics · Last-mile delivery</p>
           <div class="p-top"><h3 class="p-title">Noon Express</h3><span class="status live"><span class="dot"></span>Live</span></div>
-          <p class="p-desc">A live last-mile delivery &amp; freight app serving merchants, drivers, and back-office staff from one codebase. I <b>joined after the initial release</b> and continued its development — new features, refactoring, production bug-fixing, and maintaining releases. Handles QR/barcode scanning, real-time parcel tracking on maps, returns, driver settlements, and push notifications.</p>
+          <p class="p-desc">A live last-mile delivery app serving merchants, drivers, and back-office staff from one codebase. I <b>joined after the initial release</b> and continued its development — new features, refactoring, and maintaining releases. Handles batch QR/barcode scanning, returns &amp; exchanges, merchant and driver settlements, and real-time notifications.</p>
           <ul class="highlights">
             <li>Took over a live app after release — features, refactors &amp; fixes</li>
-            <li>Recently also took over the backend — debugging and fixing production issues</li>
-            <li>Real-time parcel tracking on maps via SignalR</li>
-            <li>QR/barcode scanning, returns &amp; driver settlements</li>
+            <li>Built the backend freight gateway endpoints (.NET / ABP): merchant registration, shipment booking, lookups</li>
+            <li>Real-time notifications via SignalR + FCM, with deep-linked order screens</li>
+            <li>Batch QR/barcode scanning, returns &amp; exchanges, merchant &amp; driver settlements (Excel export)</li>
             <li>Three roles (merchant / driver / back-office) in one codebase</li>
           </ul>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">BLoC</span><span class="tag">SignalR</span><span class="tag">FCM</span><span class="tag">Maps</span><span class="tag">Dio</span></div>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">BLoC</span><span class="tag">SignalR</span><span class="tag">FCM</span><span class="tag">QR Scan</span><span class="tag">Dio</span></div>
           <div class="p-links">
             <a class="store mag" href="https://apps.apple.com/iq/app/noon-express/id6754094278" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.7c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .4-2 1-2.7.8-.8 1.9-1.4 2.8-1.4ZM19.9 17c-.5 1.2-.8 1.7-1.5 2.7-.9 1.4-2.3 3.1-3.9 3.1-1.5 0-1.8-1-3.8-1-1.9 0-2.3 1-3.7 1-1.6 0-2.8-1.5-3.8-2.9C1 18.2.9 13.4 3.2 11c.9-1.2 2.4-2 3.8-2 1.5 0 2.4 1 3.7 1 1.2 0 2-1 3.7-1 1.3 0 2.6.7 3.6 1.9-3.1 1.7-2.6 6.1.9 7.1Z"/></svg>App Store</a>
             <a class="store mag" href="https://play.google.com/store/apps/details?id=com.enjaz.noon_express" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.6v-.2L3.7 2.2ZM16.3 15.9 13.4 13v-.2l2.9-2.9.1.1 3.5 2c1 .6 1 1.5 0 2.1ZM16 16.2l-3-3-9.3 9.3c.4.4 1 .4 1.7 0Zm-12.3-14 12.3 7-3 3Z"/></svg>Google Play</a>
@@ -612,38 +615,26 @@
         <article class="card minor">
           <p class="p-kind">Logistics · Freight</p>
           <div class="p-top"><h3 class="p-title">Freight &amp; Shipping</h3><span class="status live"><span class="dot"></span>Live</span></div>
-          <p class="p-desc">A freight-logistics app, live on the App Store and Google Play, covering the shipment lifecycle: registration, OAuth login, booking, and real-time tracking via a live status timeline, with barcode/QR lookup and map routing. Integrates a .NET (ABP) backend over REST with token auth and multi-tenant handling.</p>
+          <p class="p-desc">A freight-logistics app, live on the App Store and Google Play, covering the shipment lifecycle: registration and token-based login, booking with document upload, a shipment dashboard, and status tracking through a live timeline, with real-time notifications (SignalR + FCM). Also includes cargo-inspection requests, complaints, customer surveys, and a network-locations directory with a map picker. Integrates with a .NET (ABP) backend over REST with multi-tenant handling.</p>
           <ul class="highlights">
-            <li>Full lifecycle: registration → booking → live tracking timeline</li>
-            <li>Barcode/QR lookup + map-based routing</li>
+            <li>Booking → live status timeline, with real-time push (SignalR + FCM)</li>
+            <li>Cargo inspection, complaints &amp; customer surveys</li>
             <li>.NET (ABP) backend over REST; token auth; multi-tenant</li>
           </ul>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">.NET / ABP</span><span class="tag">Multi-tenant</span><span class="tag">Maps</span></div>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">.NET / ABP</span><span class="tag">SignalR</span><span class="tag">FCM</span><span class="tag">Hive</span><span class="tag">Multi-tenant</span></div>
           <div class="p-links">
             <a class="store mag" href="https://apps.apple.com/iq/app/noon-air-sea-shipping/id6802037066" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 1.7c.1 1-.3 2-1 2.8-.7.8-1.8 1.4-2.8 1.3-.1-1 .4-2 1-2.7.8-.8 1.9-1.4 2.8-1.4ZM19.9 17c-.5 1.2-.8 1.7-1.5 2.7-.9 1.4-2.3 3.1-3.9 3.1-1.5 0-1.8-1-3.8-1-1.9 0-2.3 1-3.7 1-1.6 0-2.8-1.5-3.8-2.9C1 18.2.9 13.4 3.2 11c.9-1.2 2.4-2 3.8-2 1.5 0 2.4 1 3.7 1 1.2 0 2-1 3.7-1 1.3 0 2.6.7 3.6 1.9-3.1 1.7-2.6 6.1.9 7.1Z"/></svg>App Store</a>
             <a class="store mag" href="https://play.google.com/store/apps/details?id=com.enjaz.noon_shipping" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.3c-.3.3-.5.7-.5 1.3v16.8c0 .6.2 1 .5 1.3l.1.1L13 12.6v-.2L3.7 2.2ZM16.3 15.9 13.4 13v-.2l2.9-2.9.1.1 3.5 2c1 .6 1 1.5 0 2.1ZM16 16.2l-3-3-9.3 9.3c.4.4 1 .4 1.7 0Zm-12.3-14 12.3 7-3 3Z"/></svg>Google Play</a>
           </div>
         </article>
         <article class="card minor">
-          <p class="p-kind">Retail · Full-stack (Flutter + .NET)</p>
-          <div class="p-top"><h3 class="p-title">Store Management System</h3><span class="status dev"><span class="dot"></span>In development</span></div>
-          <p class="p-desc">My first full-stack project — a store management platform built end to end: a Flutter app for store owners (products with size/colour variants, categories, inventory, and the full order lifecycle) backed by my own C#/ASP.NET Core (.NET 10) API on the ABP Framework with a domain-driven, layered architecture.</p>
-          <ul class="highlights">
-            <li>OTP phone authentication, Firebase push, Hive caching, and Arabic/English/Bengali (RTL) localization</li>
-            <li>Auditable stock-movement history — orders auto-deduct and restore stock across a create–confirm–cancel lifecycle</li>
-            <li>OpenIddict / JWT auth: one API serving the web admin and mobile app with permission-based access</li>
-            <li>EF Core data layer with xUnit tests across domain &amp; application layers</li>
-          </ul>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">ABP</span><span class="tag">EF Core</span><span class="tag">OpenIddict</span><span class="tag">xUnit</span><span class="tag">Hive</span><span class="tag">Firebase</span></div>
-        </article>
-        <article class="card minor wide">
           <p class="p-kind">Logistics · Warehouse ops</p>
           <div class="p-top"><h3 class="p-title">Warehouse Management</h3><span class="status dev"><span class="dot"></span>In development</span></div>
-          <p class="p-desc">A Flutter app for third-party logistics teams to run warehouse operations from their phones — full inbound/outbound flow (stock-in / stock-out), item and organization lookups, over a REST ERP backend. Email + Google sign-in, Firebase push, Arabic-first with RTL.</p>
+          <p class="p-desc">A Flutter app for third-party logistics teams to run warehouse operations from their phones — full inbound/outbound flow (stock-in / stock-out) with batch and expiry tracking, an inventory-balance report, and item and organization lookups, over a REST ERP backend. Email + Google sign-in, Arabic-first with RTL.</p>
           <ul class="highlights">
-            <li>Full inbound/outbound flow: stock-in / stock-out orders</li>
-            <li>Item, unit &amp; organization lookups feeding order entry</li>
-            <li>Email + Google sign-in, Firebase push; Arabic-first RTL</li>
+            <li>Full inbound/outbound flow: create, edit &amp; track stock-in / stock-out orders</li>
+            <li>Per-line batch, expiry &amp; warehouse/bin selection; item, unit &amp; organization lookups</li>
+            <li>Searchable inventory-balance report; unit tests on order-edit logic; Arabic-first RTL</li>
           </ul>
           <div class="shots">
             <a href="screens/warehouse-01.png" target="_blank" rel="noopener"><img src="screens/warehouse-01.png" alt="Warehouse app — dashboard with delivery counters" loading="lazy"></a>
@@ -656,7 +647,19 @@
             <a href="screens/warehouse-08.png" target="_blank" rel="noopener"><img src="screens/warehouse-08.png" alt="Warehouse app — live inventory balance with search" loading="lazy"></a>
             <a href="screens/warehouse-09.png" target="_blank" rel="noopener"><img src="screens/warehouse-09.png" alt="Warehouse app — item balance details with barcode and tracking" loading="lazy"></a>
           </div>
-          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">Clean Arch</span><span class="tag">Firebase</span><span class="tag">DI</span></div>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">Clean Arch</span><span class="tag">Google Sign-In</span><span class="tag">DI</span></div>
+        </article>
+        <article class="card minor wide">
+          <p class="p-kind">Retail · Full-stack (Flutter + .NET)</p>
+          <div class="p-top"><h3 class="p-title">Store Management System</h3><span class="status dev"><span class="dot"></span>In development</span></div>
+          <p class="p-desc">My first full-stack project — a store management platform designed and built solo, end to end: a Flutter app for store owners (products with auto-generated size/colour variants, categories, inventory, a stock dashboard, and the full order lifecycle) backed by my own C#/ASP.NET Core (.NET 10) API on the ABP Framework with a domain-driven, layered architecture.</p>
+          <ul class="highlights">
+            <li>Variant generator (colour × size), bulk creation, image upload, and a low-stock / out-of-stock dashboard</li>
+            <li>Auditable stock-movement history — stock deducted on order confirmation and restored on cancellation</li>
+            <li>OpenIddict / JWT auth with granular permissions; cash / card / bank-transfer payments with partial-payment tracking</li>
+            <li>Soft-delete with a trash &amp; restore screen; Arabic / English / Bengali (RTL) localization</li>
+          </ul>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">Cubit/Bloc</span><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">ABP</span><span class="tag">EF Core</span><span class="tag">OpenIddict</span><span class="tag">Hive</span></div>
         </article>
       </div>
     </div>
@@ -667,12 +670,12 @@
       <div class="sec-head reveal"><span class="eyebrow">Skills</span><h2>What I work with.</h2><div class="hrule"></div></div>
       <div class="skills reveal">
         <div class="skill-group"><h3>Languages</h3><div class="skill-list"><span>Dart</span><span>C#</span></div></div>
-        <div class="skill-group"><h3>Flutter &amp; State</h3><div class="skill-list"><span>Flutter</span><span>Bloc / Cubit</span><span>GetX</span><span>Clean architecture</span><span>get_it (DI)</span><span>dartz (functional)</span></div></div>
+        <div class="skill-group"><h3>Flutter &amp; State</h3><div class="skill-list"><span>Flutter</span><span>Bloc / Cubit</span><span>Clean architecture</span><span>get_it (DI)</span><span>dartz (functional)</span></div></div>
         <div class="skill-group"><h3>API &amp; Networking</h3><div class="skill-list"><span>REST</span><span>Dio</span><span>Interceptors</span><span>JWT &amp; token refresh</span><span>Error mapping</span><span>JSON serialization</span><span>Pagination</span></div></div>
-        <div class="skill-group"><h3>Backend &amp; Integration</h3><div class="skill-list"><span>SignalR (real-time)</span><span>.NET / ABP</span><span>ASP.NET Core</span><span>EF Core</span><span>OpenIddict</span><span>xUnit</span><span>OAuth 2.0</span><span>Multi-tenant APIs</span><span>Firebase (FCM)</span><span>Firestore</span></div></div>
+        <div class="skill-group"><h3>Backend &amp; Integration</h3><div class="skill-list"><span>SignalR (real-time)</span><span>.NET / ABP</span><span>ASP.NET Core</span><span>EF Core</span><span>OpenIddict</span><span>OAuth 2.0</span><span>Multi-tenant APIs</span><span>Firebase (FCM)</span><span>Firestore</span></div></div>
         <div class="skill-group"><h3>Device &amp; Platform</h3><div class="skill-list"><span>ML Kit face detection</span><span>Liveness detection</span><span>Geolocation &amp; maps</span><span>Camera</span><span>Barcode / QR</span><span>Push &amp; local notifications</span><span>Permissions</span><span>Platform channels</span></div></div>
-        <div class="skill-group"><h3>Data &amp; Offline</h3><div class="skill-list"><span>Hive</span><span>Offline-first</span><span>Caching</span><span>Timezone handling</span></div></div>
-        <div class="skill-group"><h3>UI / UX</h3><div class="skill-list"><span>Design systems</span><span>Reusable components</span><span>Responsive UI</span><span>RTL (Arabic/English)</span><span>easy_localization</span><span>SVG &amp; Lottie</span><span>Skeleton / shimmer</span><span>Glassmorphism</span><span>shadcn_ui</span></div></div>
+        <div class="skill-group"><h3>Data &amp; Caching</h3><div class="skill-list"><span>Hive</span><span>Caching</span><span>Timezone handling</span></div></div>
+        <div class="skill-group"><h3>UI / UX</h3><div class="skill-list"><span>Design systems</span><span>Reusable components</span><span>Responsive UI</span><span>RTL (Arabic/English/Kurdish)</span><span>easy_localization</span><span>SVG &amp; Lottie</span><span>Skeleton / shimmer</span><span>Glassmorphism</span><span>shadcn_ui</span></div></div>
         <div class="skill-group"><h3>Workflow &amp; Delivery</h3><div class="skill-list"><span>Git</span><span>Play Store &amp; App Store deploy</span><span>TestFlight</span><span>Agile / sprints</span><span>Production debugging</span><span>Code review</span></div></div>
       </div>
       <p class="learning reveal">Currently learning — <span>Vue.js</span></p>
